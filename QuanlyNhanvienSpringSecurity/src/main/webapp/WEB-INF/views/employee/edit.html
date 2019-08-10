@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a th:href="@{/user}">Back list</a>
+<th:block th:if="${message}">
+    <p th:text="${message}" style="color: crimson"></p>
+</th:block>
+<form th:action="@{/edit-employee}" th:object="${employee}" method="post">
+    <input type="hidden" th:field="*{id}">
+    <table>
+        <tr>
+            <td>ManNv</td>
+            <td><input type="text" th:field="*{maNv}"></td>
+        </tr>
+        <tr>
+            <td>HoTen</td>
+            <td><input type="text" th:field="*{hoTen}"></td>
+        </tr>
+        <tr>
+            <td>GioiTinh</td>
+            <td><input type="text" th:field="*{gioiTinh}"></td>
+        </tr>
+        <tr>
+            <td>Sdt</td>
+            <td><input type="text" th:field="*{sdt}"></td>
+        </tr>
+        <tr>
+            <td>PhongBan</td>
+            <td>
+                <select name="groupMembers">
+                    <option th:each="g :${GroupMember}"
+                    th:value="${g.id}"
+                            th:text="${g.groupName}"
+                            th:selected="${g.id}==*{groupMembers.id}"
+                    ></option>
+                </select>
+            </td>
+        </tr>
+      <tr>
+          <td>
+              <input type="submit" th:value="edit">
+          </td>
+      </tr>
+
+    </table>
+</form>
+</body>
+</html>

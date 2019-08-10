@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a th:href="@{/user}">Back list</a>
+<p th:text="${groupMember.groupName}"></p>
+<table cellspacing="2" cellpadding="2" border="1px">
+    <tr>
+        <td>MaNv</td>
+        <td>TenNv</td>
+        <td>GioiTinh</td>
+        <td>SoDienthoai</td>
+    </tr>
+    <tr th:each="e:${employee}">
+        <td th:text="${e.maNv}"></td>
+        <td th:text="${e.hoTen}"></td>
+        <td th:text="${e.gioiTinh}"></td>
+        <td th:text="${e.sdt}"></td>
+    </tr>
+</table>
+</body>
+</html>

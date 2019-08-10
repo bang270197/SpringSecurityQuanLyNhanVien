@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table cellspacing="2" cellpadding="2" border="1px">
+    <tr>
+        <td>MaNhanvien</td>
+        <td>HotenNhanvien</td>
+        <td>GioiTinh</td>
+        <td>Sodienthoai</td>
+        <td>View</td>
+        <td>edit</td>
+        <td>delete</td>
+    </tr>
+    <tr th:each="e :${listemployee}">
+        <td th:text="${e.maNv}"></td>
+        <td th:text="${e.hoTen}"></td>
+        <td th:text="${e.gioiTinh}"></td>
+        <td th:text="${e.sdt}"></td>
+        <td><a th:href="@{/show-viewEmployee/__${e.getId()}__}">view</a></td>
+        <td><a th:href="@{/show-editEnployee/__${e.getId()}__}">edit</a></td>
+        <td><a th:href="@{/show-deleteEmployee/__${e.getId()}__}">delete</a></td>
+    </tr>
+</table>
+</body>
+</html>

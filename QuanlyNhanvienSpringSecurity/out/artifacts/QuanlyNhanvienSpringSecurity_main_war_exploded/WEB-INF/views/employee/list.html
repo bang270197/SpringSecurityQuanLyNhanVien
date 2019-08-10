@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a th:href="@{/show-create}">Create new Employee</a>
+<form th:action="@{/search}" method="get">
+    <table>
+        <tr>
+            <td>Tim theo phong ban</td>
+            <td><select name="groupMembers">
+                <option th:each="g :${GroupMember}"
+                        th:value="${g.id}"
+                        th:text="${g.groupName}"
+                ></option>
+            </select></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Tim kiem"></td>
+        </tr>
+    </table>
+</form>
+<form th:action="@{/search}" method="get">
+    <table>
+        <tr>
+            <td>Tim theo Ten Phong ban</td>
+            <td><input name="name" type="text" placeholder="Nhap ten phong ban"><td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Tim kiem"></td>
+        </tr>
+    </table>
+</form>
+<!--<th:block th:if="${message}">-->
+<!--    <p th:text="${message}" style="color: crimson"> </p>-->
+<!--</th:block>-->
+<table cellspacing="2" cellpadding="2" border="1px">
+    <tr>
+        <td>MaNhanvien</td>
+        <td>HotenNhanvien</td>
+        <td>GioiTinh</td>
+        <td>Sodienthoai</td>
+        <td>Phong ban</td>
+        <td>View</td>
+        <td>edit</td>
+        <td>delete</td>
+    </tr>
+    <tr th:each="e :${listemployee}">
+        <td th:text="${e.maNv}"></td>
+        <td th:text="${e.hoTen}"></td>
+        <td th:text="${e.gioiTinh}"></td>
+        <td th:text="${e.sdt}"></td>
+        <td th:text="${e.groupMembers.groupName}"></td>
+        <td><a th:href="@{/show-view/__${e.getId()}__}">view</a></td>
+        <td><a th:href="@{/show-edit/__${e.getId()}__}">edit</a></td>
+        <td><a th:href="@{/show-delete/__${e.getId()}__}">delete</a></td>
+    </tr>
+</table>
+<div>
+
+    <a th:href="@{'/user'(page=${listemployee.number - 1})}" th:if="${listemployee.hasPrevious()}">Previous</a>
+    <span th:text="${listemployee.number+1}"></span>/<span th:text="${listemployee.totalPages}"></span>
+    <a th:href="@{'/user'(page=${listemployee.number+1})}" th:if="${listemployee.hasNext()}">Next</a>
+
+</div>
+</body>
+</html>

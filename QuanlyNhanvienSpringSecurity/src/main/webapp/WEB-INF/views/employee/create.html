@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a th:href="@{/user}">List Employee</a>
+<th:block th:if="${message}">
+    <p th:text="${message}" style="color: crimson"></p>
+</th:block>
+<form th:action="@{/create-employee}" th:object="${employee}" method="post">
+    <table cellpadding="2" cellspacing="2" border="1px">
+        <tr>
+            <td>MaNhanvien</td>
+            <td><input type="text" th:field="*{maNv}"></td>
+<!--           <td><span th:if="${#fields.hasErrors('maNv')}" th:errors="*{maNv}"></span></td>-->
+<!--        </tr>-->
+        <tr>
+            <td>TenNhanVien</td>
+            <td><input type="text" th:field="*{hoTen}"></td>
+<!--            <td><span th:if="${#fields.hasErrors('hoTen')}" th:errors="*{hoTen}"></span></td>-->
+<!--        </tr>-->
+        <tr>
+            <td>GioiTinh</td>
+            <td><input type="text" th:field="*{gioiTinh}"></td>
+<!--            <td><span th:if="${#fields.hasErrors('gioiTinh')}" th:errors="*{gioiTinh}"></span></td>-->
+<!--        </tr>-->
+        <tr>
+            <td>SoDienThoai</td>
+            <td><input type="text" th:field="*{sdt}"></td>
+<!--            <td><span th:if="${#fields.hasErrors('sdt')}" th:errors="*{sdt}"></span></td>-->
+<!--        </tr>-->
+        <tr>
+        <tr>
+            <td>Phong ban</td>
+        <td>
+            <select th:field="*{groupMembers}">
+                <option th:each="g :${GroupMember}"
+                th:value="${g.id}"
+                        th:text="${g.groupName}"
+                ></option>
+            </select>
+        </td>
+        <tr>
+        <tr>
+            <td colspan="3"><input type="submit" value="save"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
